@@ -1,18 +1,43 @@
 [
-    {
-        "settings": [ "master" ],
-        "appPort": "8666",
-        "specs": {
-            "foo": {
-                "type": "foo"
-            }
-        },
-        "middleware": [ "middleware/passport" ]
-    },
-    {
-        "settings": [ "environment:development" ],
-        "staticHandling": {
-            "forceUpdate": true
+  {
+    "settings": [ "master" ],
+    "middleware": [
+          "./middleware/connect-cookie-parser.js", 
+          "./middleware/connect-session.js",  
+          "./middleware/passport.js",
+          "./middleware/passport-session.js"         
+    ],
+    "specs": {
+      "frame" : {
+        "type" : "HTMLFrameMojit",
+        "config": {
+          "title": "HTMLFrameMojit Example",
+          "child" : {
+            "type" : "framed"
+          }
         }
+      },
+      "account" : {
+        "type" : "HTMLFrameMojit",
+        "config": {
+          "title": "Passport Account Example",
+          "child" : {
+            "type" : "account"
+          }
+        }
+      },
+      "login" : {
+        "type" : "HTMLFrameMojit",
+        "config": {
+          "title": "Passport Login Example",
+          "child" : {
+            "type" : "login"
+          }
+        }
+      },
+      "login_submit" : {
+        "type" : "loginSubmit"
+      }
     }
+  }
 ]

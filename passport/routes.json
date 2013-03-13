@@ -1,8 +1,24 @@
 [{
     "settings": [ "master" ],
-    "/": {
-        "path": "/",
-        "verb": ["get"],
-        "call": "foo.index"
+    "root": {
+      "verbs": ["get"],
+      "path": "/",
+      "call": "frame.index"
+    },
+    "view_login": {
+      "verbs": ["get"],
+      "path": "/login",
+      "call": "login.index"
+    },
+    "login_submit": {
+      "verbs": ["post"],
+      "path": "/login_submit",
+      "call": "login.submit"
+    },
+    "view_account": {
+      "verbs": ["post"],
+      "path": "/account",
+      "call": "account.index"
     }
+
 }]
