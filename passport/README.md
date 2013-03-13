@@ -11,10 +11,14 @@ http://developer.yahoo.com/forum/Yahoo-Mojito/What-is-the-equivalent-of-express-
  * browse to `http://localhost:8666/`
  
  
- I added to the demo by actually using sessions:
+## Changes to base demo:
  
+ I added session support for login
  
- Setup: Mac OSX 
+
+## Basic Setup
+ 
+ (I am using Mac OSX) 
  
  Install homebrew fore easy installations: 
  http://mxcl.github.com/homebrew/
@@ -32,7 +36,7 @@ http://developer.yahoo.com/forum/Yahoo-Mojito/What-is-the-equivalent-of-express-
  It is.
  
  
- 
+## Path Issues 
 Look out for the node_path "exporting" properly:
 
 On the mac this means to create a ".profile" page on the user root (~)
@@ -49,17 +53,9 @@ Explanation of why I have things in path:
 "node_modules:/usr/local/share/npm/lib/node_modules/mojito/node_modules"  <-acess to express lib
  
  
+  
  
- I included the modules but this is how you would download them:
- 
- Install Passport:
- Cd into mojito_demos/passport directory
- 
- npm install passport
- npm install passport-local
- 
- 
- How I start app:
+ ## How I start the app:
  CD to project root directory (containing the server.js file) and type:
  mojito start (or node server.js)
  
