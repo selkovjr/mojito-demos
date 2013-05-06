@@ -2,41 +2,41 @@
   {
     "settings": [ "master" ],
     "middleware": [
-          "./middleware/connect-cookie-parser.js",
-          "./middleware/connect-session.js",
-          "./middleware/passport.js",
-          "./middleware/passport-session.js"
+      "./middleware/connect-cookie-parser.js",
+      "./middleware/connect-session.js",
+      "./middleware/passport.js",
+      "./middleware/passport-session.js"
     ],
     "specs": {
-      "frame" : {
-        "type" : "HTMLFrameMojit",
+      "frame": {
+        "type": "HTMLFrameMojit",
         "config": {
           "title": "HTMLFrameMojit Example -- frame",
-          "child" : {
-            "type" : "framed"
+          "child": {
+            "type": "framed"
           }
         }
       },
-      "account" : {
-        "type" : "HTMLFrameMojit",
+      "account": {
+        "type": "HTMLFrameMojit",
         "config": {
           "title": "Passport Account Example",
-          "child" : {
-            "type" : "account"
+          "child": {
+            "type": "account"
           }
         }
       },
-      "login" : {
-        "type" : "HTMLFrameMojit",
+      "login": {
+        "type": "HTMLFrameMojit",
         "config": {
           "title": "Passport Login Example",
-          "child" : {
-            "type" : "login"
+          "child": {
+            "type": "login"
           }
         }
       },
-      "login_submit" : {
-        "type" : "loginSubmit"
+      "login_submit": {
+        "type": "loginSubmit"
       },
       "foo": {
         "type": "foo",
