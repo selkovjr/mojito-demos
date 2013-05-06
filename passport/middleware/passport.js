@@ -1,3 +1,4 @@
+/*jslint indent: 2, sloppy: true */
 /*global require: false, module: false, console: false */
 
 var
@@ -78,6 +79,22 @@ passport.use(new LocalStrategy(function (username, password, done) {
     return done(null, user);
   });
 }));
+
+passport.use(new LDAPStrategy(
+  {
+    server: {
+      url: 'ldap://localhost:389'
+    },
+    base: 'o=demo,dc=uchicago-stat,dc=org',
+    search: {
+      // filter: '(&(l=Seattle)(email=*@foo.com))'
+      filter: '(uid=*)'
+    }
+  },
+  function (profile, done) {
+    return done(null, profile);
+  }
+));
 
 initialize = passport.initialize();
 
