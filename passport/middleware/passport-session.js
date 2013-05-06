@@ -14,10 +14,12 @@ module.exports = function (req, res, next) {
       return next(err);
     }
     // Not sure if i attach to anything
-    if (!req.isAuthenticated() && !req.url.match(/login/)) {
+    if (!req.isAuthenticated() && !req.url.match(/login/) && !req.url.match(/favicon/)) {
       console.log('middleware/passport-session/passport session(): unauthenticated; redirecting');
       // res.send('Please <a href="/login">log in</a>');
       req.method = 'post';
+      req.session.url = req.url;
+      console.log(req.session);
       res.redirect('/login');
     }
     else {

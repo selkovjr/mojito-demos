@@ -52,14 +52,21 @@ YUI.add('login', function (Y, NAME) {
         }
 
         req.logIn(user, function (err) {
+          var url;
+
           if (err) {
             ac.error(err);
             return;
           }
 
-          Y.log('Session info: ' + Y.dump(req.session), 'info', 'login.submit()');
-          Y.log('User ID logged in: ' + user.id, 'info', 'login.submit()');
-          return http.redirect('/');
+          url = req.session.url;
+          delete req.session.url;
+
+          Y.log('Session info: ' + Y.dump(req.session), 'info', 'login.submit() -> req.logIn()');
+          Y.log('User ID logged in: ' + user.id, 'info', 'login.submit() -> req.logIn()');
+          Y.log('  redirecting to: ' + url, 'info', 'login.submit() -> req.logIn()');
+          Y.log(req.session);
+          return http.redirect(url);
         });
       })(req, res, function (req, res) {
         Y.log('Username logged in: ' + req.user.name, 'info', 'login.submit()');
