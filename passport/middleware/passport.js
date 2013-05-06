@@ -3,6 +3,7 @@
 var
   passport = require('passport'),
   LocalStrategy = require("passport-local").Strategy,
+  LDAPStrategy = require("passport-ldap").Strategy,
   initialize;
 
 var users = [

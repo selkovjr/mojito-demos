@@ -79,4 +79,4 @@ YUI.add('login', function (Y, NAME) {
       ac.http.getResponse().redirect('/login');
     }
   };
-}, '0.0.1', {requires: ['mojito',  'passport', 'mojito-http-addon']});
+}, '0.0.1', {requires: ['mojito',  'mojito-http-addon']});
