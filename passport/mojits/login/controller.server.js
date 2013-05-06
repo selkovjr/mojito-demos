@@ -21,10 +21,10 @@ YUI.add('login', function (Y, NAME) {
     //        to the Mojito API.
     //
     index: function (ac) {
+      Y.log('login.index()', 'info', 'login.index()');
       ac.done({
         status: 'Mojito is working.'
       });
-
     },
 
     submit: function (ac) {
@@ -59,7 +59,7 @@ YUI.add('login', function (Y, NAME) {
             return;
           }
 
-          url = req.session.url;
+          url = req.session.url || '/';
           delete req.session.url;
 
           Y.log('Session info: ' + Y.dump(req.session), 'info', 'login.submit() -> req.logIn()');
@@ -72,6 +72,11 @@ YUI.add('login', function (Y, NAME) {
         Y.log('Username logged in: ' + req.user.name, 'info', 'login.submit()');
         ac.http.redirect('/');
       });
+    },
+
+    logout: function (ac) {
+      ac.http.getRequest().logout();
+      ac.http.getResponse().redirect('/login');
     }
   };
 }, '0.0.1', {requires: ['mojito',  'passport', 'mojito-http-addon']});

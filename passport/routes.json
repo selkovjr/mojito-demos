@@ -20,6 +20,11 @@
     "path": "/account",
     "call": "account.index"
   },
+  "logout": {
+    "verbs": ["get"],
+    "path": "/logout",
+    "call": "login.logout"
+  },
   "foo": {
     "verbs": ["get"],
     "path": "/foo",
