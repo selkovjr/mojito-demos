@@ -2,16 +2,16 @@
   {
     "settings": [ "master" ],
     "middleware": [
-          "./middleware/connect-cookie-parser.js", 
-          "./middleware/connect-session.js",  
+          "./middleware/connect-cookie-parser.js",
+          "./middleware/connect-session.js",
           "./middleware/passport.js",
-          "./middleware/passport-session.js"         
+          "./middleware/passport-session.js"
     ],
     "specs": {
       "frame" : {
         "type" : "HTMLFrameMojit",
         "config": {
-          "title": "HTMLFrameMojit Example",
+          "title": "HTMLFrameMojit Example -- frame",
           "child" : {
             "type" : "framed"
           }
@@ -37,7 +37,19 @@
       },
       "login_submit" : {
         "type" : "loginSubmit"
+      },
+      "foo": {
+        "type": "foo",
+        "config": {
+          "message": "hi"
+        }
       }
+    }
+  },
+  {
+    "settings": [ "environment:development" ],
+    "staticHandling": {
+      "forceUpdate": true
     }
   }
 ]

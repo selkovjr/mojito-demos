@@ -1,24 +1,28 @@
 [{
-    "settings": [ "master" ],
-    "root": {
-      "verbs": ["get"],
-      "path": "/",
-      "call": "frame.index"
-    },
-    "view_login": {
-      "verbs": ["get"],
-      "path": "/login",
-      "call": "login.index"
-    },
-    "login_submit": {
-      "verbs": ["post"],
-      "path": "/login_submit",
-      "call": "login.submit"
-    },
-    "view_account": {
-      "verbs": ["post"],
-      "path": "/account",
-      "call": "account.index"
-    }
-
+  "settings": [ "master" ],
+  "root": {
+    "verbs": ["get"],
+    "path": "/",
+    "call": "frame.index"
+  },
+  "view_login": {
+    "verbs": ["get"],
+    "path": "/login",
+    "call": "login.index"
+  },
+  "login_submit": {
+    "verbs": ["post"],
+    "path": "/login_submit",
+    "call": "login.submit"
+  },
+  "view_account": {
+    "verbs": ["post"],
+    "path": "/account",
+    "call": "account.index"
+  },
+  "foo": {
+    "verbs": ["get"],
+    "path": "/foo",
+    "call": "foo.index"
+  }
 }]
