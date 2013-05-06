@@ -37,41 +37,49 @@ YUI.add('login', function (Y, NAME) {
       // you can do whatever you want here with the
       // passport reference
 
-      passport.authenticate('local', function (err, user, info) {
-        if (err) {
-          ac.error(err);
-          return;
-        }
-
-        if (!user) {
-          // Incorrect username
-          Y.log('Login failed', 'error', 'login.submit()');
-          Y.log(info.message);
-          //req.flash('error', info.message);
-          return http.redirect('/login');
-        }
-
-        req.logIn(user, function (err) {
-          var url;
-
+      if (req.body.local) {
+        passport.authenticate('local', function (err, user, info) {
           if (err) {
             ac.error(err);
             return;
           }
 
-          url = req.session.url || '/';
-          delete req.session.url;
+          if (!user) {
+            // Incorrect username
+            Y.log('Login failed', 'error', 'login.submit()');
+            Y.log(info.message);
+            //req.flash('error', info.message);
+            return http.redirect('/login');
+          }
 
-          Y.log('Session info: ' + Y.dump(req.session), 'info', 'login.submit() -> req.logIn()');
-          Y.log('User ID logged in: ' + user.id, 'info', 'login.submit() -> req.logIn()');
-          Y.log('  redirecting to: ' + url, 'info', 'login.submit() -> req.logIn()');
-          Y.log(req.session);
-          return http.redirect(url);
+          req.logIn(user, function (err) {
+            var url;
+
+            if (err) {
+              ac.error(err);
+              return;
+            }
+
+            url = req.session.url || '/';
+            delete req.session.url;
+
+            Y.log('Session info: ' + Y.dump(req.session), 'info', 'login.submit() -> req.logIn()');
+            Y.log('User ID logged in: ' + user.id, 'info', 'login.submit() -> req.logIn()');
+            Y.log('  redirecting to: ' + url, 'info', 'login.submit() -> req.logIn()');
+            Y.log(req.session);
+            return http.redirect(url);
+          });
+        })(req, res, function (req, res) {
+          Y.log('Username logged in: ' + req.user.name, 'info', 'login.submit()');
+          ac.http.redirect('/');
         });
-      })(req, res, function (req, res) {
-        Y.log('Username logged in: ' + req.user.name, 'info', 'login.submit()');
-        ac.http.redirect('/');
-      });
+      }
+      else if (req.body.ldap) {
+        passport.authenticate('ldap', {
+          successRedirect: '/',
+          failureRedirect: '/login'
+        });
+      }
     },
 
     logout: function (ac) {

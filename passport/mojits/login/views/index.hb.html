@@ -1,8 +1,5 @@
 <div id="{{mojit_view_id}}">
-  {{#if message}}
-  <p>{{message}}</p>
-  {{/if}}
-  Test:
+  You are not logged in.
   <form action="/login_submit" method="post">
     <div>
       <label>Username:</label>
@@ -13,7 +10,8 @@
       <input type="password" name="password"/>
     </div>
     <div>
-      <input type="submit" value="Submit"/>
+      <input type="submit" name="local" value="Login Locally"/>
+      <input type="submit" name="ldap" value="Login using LDAP"/>
     </div>
   </form>
 </div>
