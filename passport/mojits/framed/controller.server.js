@@ -4,19 +4,15 @@ YUI.add('framed', function(Y, NAME) {
     index: function(ac) {
       req = ac.http.getRequest();
       var
-        userInfo = req.user,
-        login_url = ac.url.make('login', 'index', ''),
-        username;
+        name = "what's-your-name";
 
-      if(userInfo){
-        username = userInfo.username;
+      if(req.user){
+        name = req.user.username;
       }
 
       ac.done({
-        app_name:'Is there a user info object ' + Y.dump( userInfo),
-        l_url: login_url,
-        test: "testface",
-        username: username
+        app_name:'Is there a user info object ' + Y.dump(req.user),
+        name: name
       });
     }
   };

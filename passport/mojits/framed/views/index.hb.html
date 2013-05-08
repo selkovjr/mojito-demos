@@ -15,13 +15,13 @@
     font-size:2.0em;
     color: #FF9900;
     width: 90%;
-  ">{{app_name}}</h2>
-	
-	{{#if username}}
-		<h2>Hello, {{username}}</h2>
+    ">{{app_name}}</h2>
 
-	
-	{{else}}
-		<h2>Welcome! Please log in. <a href="{{l_url}}" > Login</a> </h2>
-	{{/if}}	
+  {{#if name}}
+  <h2>Hello, {{name}}</h2>
+
+
+  {{else}}
+  <h2>Something is amiss. I can't find your name</h2>
+  {{/if}}
 </div>
