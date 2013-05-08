@@ -7,28 +7,26 @@ var
   LDAPStrategy = require("passport-ldap").Strategy,
   initialize;
 
-var users = [
-  {id: 1, username: 'bob', password: 'bob', email: 'bob@example.com'},
-  {id: 2, username: 'joe', password: 'joe', email: 'joe@example.com'}
-];
+var users = {
+  bob: {uid: 'bob', username: 'bob', password: 'bob', email: 'bob@example.com'},
+  joe: {uid: 'joe', username: 'joe', password: 'joe', email: 'joe@example.com'}
+};
 
-function findById(id, fn) {
-  var idx = id - 1;
-  if (users[idx]) {
-    fn(null, users[idx]);
+function findById(uid, fn) {
+  if (users[uid]) {
+    fn(null, users[uid]);
   } else {
-    fn(new Error('User ' + id + ' does not exist'));
+    fn(new Error('User ' + uid + ' does not exist'));
   }
 }
 
 function findByUsername(username, fn) {
-  var i, user;
-  for (i = 0; i < users.length; i += 1) {
-    user = users[i];
-    if (user.username === username) {
-      console.log("middleware/passport/findByUserName(): found username: " + username);
-      return fn(null, user);
-    }
+  console.log('username: ' + username);
+  var user;
+  if (users[username]) {
+    user = users[username];
+    console.log("middleware/passport/findByUserName(): found username: " + username);
+    return fn(null, user);
   }
   return fn(null, null);
 }
@@ -42,12 +40,12 @@ function findByUsername(username, fn) {
 //   and finding the user by ID when deserializing.
 
 passport.serializeUser(function (user, done) {
-  console.log('middleware/passport/passport.serializeUser(): User ID ' + user.id + ' in serializeUser, done = '  + done.toString());
-  done(null, user.id);
+  console.log('middleware/passport/passport.serializeUser(): User ID ' + user.uid + ' in serializeUser, done = '  + done.toString());
+  done(null, user.uid);
 });
 
-passport.deserializeUser(function (id, done) {
-  findById(id, function (err, user) {
+passport.deserializeUser(function (uid, done) {
+  findById(uid, function (err, user) {
     done(err, user);
   });
 });

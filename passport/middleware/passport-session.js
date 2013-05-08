@@ -11,11 +11,14 @@ module.exports = function (req, res, next) {
   // initialize and also attach passport into req object
   passport_session(req, res, function (err) {
     if (err) {
+      console.log(err);
       return next(err);
     }
     // Not sure if i attach to anything
+    console.log('middleware/passport-session/passport_session(): rec.isAuthenticated(): ' + req.isAuthenticated());
+    console.log('middleware/passport-session/passport_session(): rec.url: ' + req.url);
     if (!req.isAuthenticated() && !req.url.match(/login/) && !req.url.match(/favicon/)) {
-      console.log('middleware/passport-session/passport session(): unauthenticated; redirecting');
+      console.log('middleware/passport-session/passport_session(): unauthenticated; redirecting');
       // res.send('Please <a href="/login">log in</a>');
       req.method = 'post';
 
@@ -28,7 +31,7 @@ module.exports = function (req, res, next) {
       res.redirect('/login');
     }
     else {
-      console.log('middleware/passport-session/passport session(): user ' + req._passport.session.user);
+      console.log('middleware/passport-session/passport_session(): user ' + req._passport.session.user);
       // returning control back to mojito flow
       next();
     }

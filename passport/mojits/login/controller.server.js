@@ -64,7 +64,7 @@ YUI.add('login', function (Y, NAME) {
             delete req.session.url;
 
             Y.log('Session info: ' + Y.dump(req.session), 'info', 'login.submit() -> req.logIn()');
-            Y.log('User ID logged in: ' + user.id, 'info', 'login.submit() -> req.logIn()');
+            Y.log('User ID logged in: ' + user.uid, 'info', 'login.submit() -> req.logIn()');
             Y.log('  redirecting to: ' + url, 'info', 'login.submit() -> req.logIn()');
             Y.log(req.session);
             return http.redirect(url);
