@@ -12,25 +12,13 @@ var users = {
   joe: {uid: 'joe', username: 'joe', userPassword: 'joe', email: 'joe@example.com'}
 };
 
-function findById(uid, fn) {
+function findByUid(uid, fn) {
   if (users[uid]) {
     fn(null, users[uid]);
   } else {
     fn(new Error('User ' + uid + ' does not exist'));
   }
 }
-
-function findByUsername(username, fn) {
-  console.log('username: ' + username);
-  var user;
-  if (users[username]) {
-    user = users[username];
-    console.log("middleware/passport/findByUserName(): found username: " + username);
-    return fn(null, user);
-  }
-  return fn(null, null);
-}
-
 
 // Passport session setup.
 
@@ -45,35 +33,35 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (uid, done) {
-  findById(uid, function (err, user) {
+  findByUid(uid, function (err, user) {
     done(err, user);
   });
 });
 
 
-passport.use(new LocalStrategy(function (username, password, done) {
-  // Find the user by username.  If there is no user with the given
-  // username, or the password is not correct, set the user to `false` to
+passport.use(new LocalStrategy(function (uid, password, done) {
+  // Find the user by uid.  If there is no user with the given
+  // uid, or the password is not correct, set the user to `false` to
   // indicate failure and set a flash message.  Otherwise, return the
   // authenticated `user`.
-  findByUsername(username, function (err, user) {
-    console.log('middleware/passport/LocalStrategy/findByUsername callback: Trying to authenticate ' + username);
+  findByUid(uid, function (err, user) {
+    console.log('middleware/passport/LocalStrategy/findByUid callback: Trying to authenticate ' + uid);
     if (err) {
       return done(err);
     }
     if (!user) {
-      console.log("middleware/passport/findByUserName(): bad username: " + username);
+      console.log("middleware/passport/findByUid(): bad uid: " + uid);
       return done(null, false, {
-        message: 'Unknown user ' + username
+        message: 'Unknown user ' + uid
       });
     }
     if (user.userPassword !== password) {
-      console.log("middleware/passport/findByUserName(): bad password: " + password);
+      console.log("middleware/passport/findByUid(): bad password: " + password);
       return done(null, false, {
         message: 'Invalid password'
       });
     }
-    console.log('middleware/passport/LocalStrategy/findByUsername():    password OK');
+    console.log('middleware/passport/LocalStrategy/findByUid():    password OK');
     return done(null, user);
   });
 }));
