@@ -8,8 +8,8 @@ var
   initialize;
 
 var users = {
-  bob: {uid: 'bob', username: 'bob', password: 'bob', email: 'bob@example.com'},
-  joe: {uid: 'joe', username: 'joe', password: 'joe', email: 'joe@example.com'}
+  bob: {uid: 'bob', username: 'bob', userPassword: 'bob', email: 'bob@example.com'},
+  joe: {uid: 'joe', username: 'joe', userPassword: 'joe', email: 'joe@example.com'}
 };
 
 function findById(uid, fn) {
@@ -67,7 +67,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
         message: 'Unknown user ' + username
       });
     }
-    if (user.password !== password) {
+    if (user.userPassword !== password) {
       console.log("middleware/passport/findByUserName(): bad password: " + password);
       return done(null, false, {
         message: 'Invalid password'
