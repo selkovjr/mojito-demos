@@ -7,7 +7,7 @@ YUI.add('framed', function(Y, NAME) {
         name = "what's-your-name";
 
       if(req.user){
-        name = req.user.username;
+        name = req.user.givenName;
       }
 
       ac.done({

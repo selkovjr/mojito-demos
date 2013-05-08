@@ -8,8 +8,8 @@ var
   initialize;
 
 var users = {
-  bob: {uid: 'bob', username: 'bob', userPassword: 'bob', email: 'bob@example.com'},
-  joe: {uid: 'joe', username: 'joe', userPassword: 'joe', email: 'joe@example.com'}
+  bob: {uid: 'bob', givenName: 'Bob', userPassword: 'bob', email: 'bob@example.com'},
+  joe: {uid: 'joe', givenName: 'Joe', userPassword: 'joe', email: 'joe@example.com'}
 };
 
 function findByUid(uid, fn) {
