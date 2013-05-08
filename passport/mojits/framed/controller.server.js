@@ -9,7 +9,7 @@ YUI.add('framed', function(Y, NAME) {
         username;
 
       if(userInfo){
-        username = userInfo.givenName;
+        username = userInfo.username;
       }
 
       ac.done({
