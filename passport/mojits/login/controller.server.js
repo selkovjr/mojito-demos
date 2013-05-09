@@ -38,7 +38,7 @@ YUI.add('login', function (Y, NAME) {
       // passport reference
 
       if (req.body.local) {
-        passport.authenticate('local', function (err, user, info) {
+        passport.authenticate(['local', 'ldapauth'], function (err, user, info) {
           if (err) {
             ac.error(err);
             return;
@@ -75,7 +75,7 @@ YUI.add('login', function (Y, NAME) {
         });
       }
       else if (req.body.ldap) {
-        passport.authenticate('ldap', {
+        passport.authenticate('ldapauth', {
           successRedirect: '/',
           failureRedirect: '/login'
         });
