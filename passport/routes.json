@@ -15,11 +15,6 @@
     "path": "/login_submit",
     "call": "login.submit"
   },
-  "view_account": {
-    "verbs": ["post"],
-    "path": "/account",
-    "call": "account.index"
-  },
   "logout": {
     "verbs": ["get"],
     "path": "/logout",
